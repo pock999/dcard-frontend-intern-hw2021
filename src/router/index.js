@@ -23,7 +23,7 @@ const routes = [
     component: AllScenicSpot,
   },
   {
-    path: '/scenicSpot/:city',
+    path: '/scenicSpot/:City',
     component: CityScenicSpot,
   },
 ];
@@ -33,6 +33,7 @@ const Routers = () => (
     {
       routes.map((route, i) => (
         <Route
+          key={route.path}
           exact
           component={route.component}
           path={route.path}

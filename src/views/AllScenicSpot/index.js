@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import history from '../../history';
+
 import {
   ScenicSpotList,
 } from '../../components';
@@ -14,7 +16,7 @@ const AllScenicSpot = (props) => {
   const dispatch = useDispatch();
   const scenicSpots = useSelector(state => state.ScenicSpotStore.scenicSpots);
 
-  const fetchTimes = React.useRef(1);
+  const fetchTimes = React.useRef(0);
 
   const handleScroll = () => {
     // 螢幕畫面高度
@@ -28,7 +30,7 @@ const AllScenicSpot = (props) => {
     // console.log('scrollTop => ', scrollTop);
     // console.log('scrollHeight => ', scrollHeight)
 
-    if((innerHeight + scrollTop + 10) >= scrollHeight) {
+    if(fetchTimes.current !== 0 && (innerHeight + scrollTop + 10) >= scrollHeight) {
       // console.log(scenicSpots);
       dispatch(sagaActions.FetchScenicSpotListAction({
         skip: fetchTimes.current*30,
@@ -45,16 +47,18 @@ const AllScenicSpot = (props) => {
       skip: 0,
       city: '',
     }));
+    fetchTimes.current++;
     window.addEventListener('scroll', handleScroll);
-    // return function() {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
+    return function() {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
     <div>
       <ScenicSpotList
         data={scenicSpots}
+        historyPush={(path) => history.push(path)}
       />
       <div style={{ height: 50 }}>
         載入中...

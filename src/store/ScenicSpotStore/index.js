@@ -55,7 +55,7 @@ export const INIT_SCENIC_SPOTS_LIST = 'SCENIC_SPOT_SAGA/INIT_SCENIC_SPOTS_LIST';
 
 // saga(有多的就再新增)，其實不需要export，透出是為了可能要寫測試
 export function* FetchScenicSpotList(action) {
-  // console.log(`=== FetchScenicSpotList ===`);
+  console.log(`=== FetchScenicSpotList ===`);
   const { payload } = action;
 
   console.log('payload => ', payload);
@@ -71,10 +71,10 @@ export function* FetchScenicSpotList(action) {
       let urlParams = '?$top=30&';
 
       if(skip !== 0) {
-        urlParams += `$skip=${skip}`;
+        urlParams += `$skip=${skip}&`;
       }
       if(city !== '') {
-        urlParams = `/${city}` + urlParams;
+        urlParams = `/${city}${urlParams}&`;
       }
       res = await axios.get(`${baseURL}/v2/Tourism/ScenicSpot${urlParams}`);
       res = res.data;
@@ -86,13 +86,19 @@ export function* FetchScenicSpotList(action) {
 
   // TODO: try catch
 
-  const res = yield call(handleApi);
+  let res;
+  try {
+    res = yield call(handleApi);
+  } catch(e) {
+    res = [];
+  }
 
   yield put(setscenicSpotList(res));
 
 }
 
 export function* InitScenicSpotList(action) {
+  console.log('=== InitScenicSpotList ===');
   const { payload } = action;
   const handleApi = async () => {
     let res;
@@ -120,7 +126,12 @@ export function* InitScenicSpotList(action) {
 
   // TODO: try catch
 
-  const res = yield call(handleApi);
+  let res;
+  try {
+    res = yield call(handleApi);
+  } catch(e) {
+    res = [];
+  }
   yield put(clearscenicSpotList());
   yield put(setscenicSpotList(res));
 }
@@ -155,6 +166,7 @@ export default {
   sagas: [
     // 註冊個別saga
     takeLatest(FETCH_SCENIC_SPOTS_LIST, FetchScenicSpotList),
+    takeLatest(INIT_SCENIC_SPOTS_LIST, InitScenicSpotList)
   ],
   // (必要)透出saga方法
   sagaActions: {
