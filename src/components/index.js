@@ -1,0 +1,1 @@
+export { default as ScenicSpotList } from './ScenicSpotList';
