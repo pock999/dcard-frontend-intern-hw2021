@@ -9,10 +9,12 @@ import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import history from './history';
 
+console.log('process.env.PUBLIC_URL => ', process.env.PUBLIC_URL);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router history={history}>
+      <Router history={history} basename={`${process.env.PUBLIC_URL}/`}>
         <App />
       </Router>
     </Provider>
