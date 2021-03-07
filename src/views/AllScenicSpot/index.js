@@ -38,7 +38,7 @@ const AllScenicSpot = (props) => {
       }));
       fetchTimes.current++;
     } else {
-      console.log((innerHeight + scrollTop + 10) - scrollHeight);
+      // console.log((innerHeight + scrollTop + 10) - scrollHeight);
     }
   };
 
@@ -53,6 +53,8 @@ const AllScenicSpot = (props) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  React.useEffect(()=> {}, [scenicSpots]);
 
   return (
     <div>

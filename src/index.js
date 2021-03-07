@@ -9,7 +9,7 @@ import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import history from './history';
 
-console.log('process.env.PUBLIC_URL => ', process.env.PUBLIC_URL);
+// console.log('process.env.PUBLIC_URL => ', process.env.PUBLIC_URL);
 
 ReactDOM.render(
   <React.StrictMode>

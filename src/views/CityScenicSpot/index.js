@@ -35,24 +35,36 @@ const CityScenicSpot = (props) => {
       // console.log(scenicSpots);
       dispatch(sagaActions.FetchScenicSpotListAction({
         skip: fetchTimes.current*30,
-        city: '',
+        city: City,
       }));
       fetchTimes.current++;
     } else {
-      console.log((innerHeight + scrollTop + 10) - scrollHeight);
+      // console.log((innerHeight + scrollTop + 10) - scrollHeight);
     }
   };
 
   React.useEffect(() => {
     dispatch(sagaActions.InitScenicSpotListAction({
       skip: 0,
-      city: '',
+      city: City,
     }));
     window.addEventListener('scroll', handleScroll);
-    // return function() {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
+    return function() {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  React.useEffect(() => {
+    dispatch(sagaActions.InitScenicSpotListAction({
+      skip: 0,
+      city: City,
+    }));
+    fetchTimes.current++;
+  }, [City]);
+  
+  React.useEffect(()=> {
+    // console.log(scenicSpots);
+  }, [scenicSpots]);
 
   return (
     <div>

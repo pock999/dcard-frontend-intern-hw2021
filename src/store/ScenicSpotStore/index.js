@@ -58,15 +58,19 @@ export function* FetchScenicSpotList(action) {
   console.log(`=== FetchScenicSpotList ===`);
   const { payload } = action;
 
-  console.log('payload => ', payload);
+  const {
+    city='',
+    skip=0,
+  } = payload;
+
+  if(skip === 0) {
+    yield put(clearscenicSpotList());
+  }
 
   const handleApi = async () => {
     let res;
     try {
-      const {
-        city='',
-        skip=0,
-      } = payload;
+      
 
       let urlParams = '?$top=30&';
 
@@ -100,6 +104,9 @@ export function* FetchScenicSpotList(action) {
 export function* InitScenicSpotList(action) {
   console.log('=== InitScenicSpotList ===');
   const { payload } = action;
+
+  yield put(clearscenicSpotList());
+
   const handleApi = async () => {
     let res;
     try {
@@ -132,7 +139,6 @@ export function* InitScenicSpotList(action) {
   } catch(e) {
     res = [];
   }
-  yield put(clearscenicSpotList());
   yield put(setscenicSpotList(res));
 }
 
