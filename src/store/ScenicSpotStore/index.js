@@ -93,12 +93,11 @@ export function* FetchScenicSpotList(action) {
   let res;
   try {
     res = yield call(handleApi);
+    // console.log('res => ', res);
+    yield put(setscenicSpotList(res));
   } catch(e) {
     res = [];
   }
-
-  yield put(setscenicSpotList(res));
-
 }
 
 export function* InitScenicSpotList(action) {
@@ -136,10 +135,10 @@ export function* InitScenicSpotList(action) {
   let res;
   try {
     res = yield call(handleApi);
+    yield put(setscenicSpotList(res));
   } catch(e) {
     res = [];
   }
-  yield put(setscenicSpotList(res));
 }
 
 // ---------------------------

@@ -106,7 +106,7 @@ const ScenicSpotList = (props) => {
             >
               <Card.Meta
                 title={item.Name}
-                description={item.Description}
+                description={global._.has(item, 'Description') ? item.Description : item.DescriptionDetail}
               />
             </Card>
           </List.Item>

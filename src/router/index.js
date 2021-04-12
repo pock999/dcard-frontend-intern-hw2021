@@ -29,7 +29,8 @@ const routes = [
 ];
 
 const Routers = () => (
-  <Switch>
+  // <Switch>
+  <>
     {
       routes.map((route, i) => (
         <Route
@@ -40,7 +41,8 @@ const Routers = () => (
         />
       ))
     }
-  </Switch>
+  </>
+  // </Switch>
 );
 
 export {
