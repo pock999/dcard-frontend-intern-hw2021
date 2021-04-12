@@ -14,9 +14,9 @@ import history from './history';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HashRouter history={history}>
+      <Router history={history}>
         <App />
-      </HashRouter>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

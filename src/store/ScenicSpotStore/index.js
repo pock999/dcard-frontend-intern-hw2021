@@ -80,7 +80,7 @@ export function* FetchScenicSpotList(action) {
       if(city !== '') {
         urlParams = `/${city}${urlParams}&`;
       }
-      res = await axios.get(`${global.cors}${baseURL}/v2/Tourism/ScenicSpot${urlParams}`);
+      res = await axios.get(`${baseURL}/v2/Tourism/ScenicSpot${urlParams}`);
       res = res.data;
     } catch(e) {
       res = e;
@@ -122,7 +122,7 @@ export function* InitScenicSpotList(action) {
       if(city !== '') {
         urlParams = `/${city}` + urlParams;
       }
-      res = await axios.get(`${global.cors}${baseURL}/v2/Tourism/ScenicSpot${urlParams}`);
+      res = await axios.get(`${baseURL}/v2/Tourism/ScenicSpot${urlParams}`);
       res = res.data;
     } catch(e) {
       res = e;
