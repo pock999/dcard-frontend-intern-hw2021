@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import store from './store';
-import { Router } from 'react-router-dom';
+import { Router, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import history from './history';
 
@@ -14,9 +14,9 @@ import history from './history';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router history={history} basename={`${process.env.PUBLIC_URL}/`}>
+      <HashRouter history={history}>
         <App />
-      </Router>
+      </HashRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

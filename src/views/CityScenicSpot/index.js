@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import history from '../../history';
+import { useHistory } from "react-router-dom";
 
 import {
   ScenicSpotList,
@@ -16,6 +16,8 @@ import {
 const CityScenicSpot = (props) => {
   const dispatch = useDispatch();
   const scenicSpots = useSelector(state => state.ScenicSpotStore.scenicSpots);
+
+  const history = useHistory();
 
   const {
     City,
