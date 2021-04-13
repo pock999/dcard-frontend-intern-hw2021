@@ -65,7 +65,7 @@ const ScenicSpotList = (props) => {
       <PageHeader
         className="site-page-header"
         title={findCity(City)}
-        subTitle="This is a subtitle"
+        // subTitle="This is a subtitle"
         extra={[
           <Select
             style={{ width: 120 }}
